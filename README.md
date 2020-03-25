@@ -1,5 +1,6 @@
-#### PHP Movie Review
-This is the Docker environment set up for Movie Review
+#### Sport Chek
+## Custom CMS System
+This is the Docker environment set up for the Sport Chek CMS project
 
 
 #### Prerequisites
@@ -10,11 +11,11 @@ This is the Docker environment set up for Movie Review
 #### Set up
 1. Clone the repo
    ```
-   git clone https://github.com/spiderPan/Fanshawe-IDP-Inclass.git
+   git clone https://github.com/danamaring/Campbell_D_Marin_D_3014_CMS.git
    ```
 2. Open the folder and run docker-compose
    ```
-   cd movies_cms
+   cd Campbell_D_Marin_D_3014_CMS
    docker-compose up
    ```
 3. When you finished work, you can turn if off by doing 
@@ -23,9 +24,5 @@ This is the Docker environment set up for Movie Review
    ```
 
 #### URLs
-1. Your project is up in `http://localhost:8010` which is mapping to the `movies_cms` folder
-2. The phpMyAdmin is in `http://localhost:8011` with the credential of 
-```
-Username: docker_u
-Password: docker_p
-```
+1. The project will be running in `http://localhost:2020`
+2. The phpMyAdmin is running in `http://localhost:8081`
