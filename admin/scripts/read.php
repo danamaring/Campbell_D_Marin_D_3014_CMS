@@ -13,7 +13,7 @@ function getAll($tbl)
     }
 }
 
-function getSingleMovie($tbl, $col, $id)
+function getSingleProduct($tbl, $col, $id)
 {
     //TODO: finish the function based on getAll, this time only return
     // one movie's fields
@@ -31,7 +31,7 @@ function getSingleMovie($tbl, $col, $id)
 
 }
 
-function getMoviesByFilter($args)
+function getProductByFilter($args)
 {
     $pdo = Database::getInstance()->getConnection();
 

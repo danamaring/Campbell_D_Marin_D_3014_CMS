@@ -3,9 +3,9 @@ require_once 'load.php';
 
 if (isset($_GET['id'])) {
     $id = $_GET['id'];
-    $tbl = 'tbl_movies';
-    $col = 'movies_id';
-    $getMovie = getSingleMovie($tbl, $col, $id);
+    $tbl = 'tbl_products';
+    $col = 'product_id';
+    $getProduct = getSingleProduct($tbl, $col, $id);
 }
 
 ?>
@@ -17,16 +17,18 @@ if (isset($_GET['id'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Details</title>
+
+    <link rel="stylesheet" type="text/css" href="css/main.css">
 </head>
 <body>
     <?php include 'templates/header.php';?>
-    <?php if (!is_string($getMovie)): ?>
-        <?php while ($row = $getMovie->fetch(PDO::FETCH_ASSOC)): ?>
-            <img src="images/<?php echo $row['movies_cover']; ?>" alt="<?php echo $row['movies_title'] ?>" />
+    <?php if (!is_string($getProduct)): ?>
+        <?php while ($row = $getProduct->fetch(PDO::FETCH_ASSOC)): ?>
+            <img src="images/<?php echo $row['product_image']; ?>" alt="<?php echo $row['product_name'] ?>" />
 
-            <h2>Name: <?php echo $row['movies_title']; ?></h2>
-            <h4>Year: <?php echo $row['movies_year']; ?></h4>
-            <p>Story:<br> <?php echo $row['movies_storyline']; ?></p>
+            <h2>Name: <?php echo $row['product_name']; ?></h2>
+            <h4>Year: <?php echo $row['product_price']; ?></h4>
+            <p>Description:<br> <?php echo $row['product_description']; ?></p>
             <a href="index.php">Back...</a>
         <?php endwhile;?>
     <?php endif;?>
