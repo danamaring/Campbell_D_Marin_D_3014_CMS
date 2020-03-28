@@ -12,10 +12,10 @@ if (isset($_GET['filter'])) {
         'col3' => 'sport_name',
         'filter' => $_GET['filter'],
     );
-    $getProduct = getProductByFilter($args);
+    $getProducts = getProductByFilter($args);
 } else {
     $product_table = 'tbl_products';
-    $getProduct = getAll($product_table);
+    $getProducts = getAll($product_table);
 }
 ?>
 
@@ -30,7 +30,8 @@ if (isset($_GET['filter'])) {
 </head>
 <body>
     <?php include 'templates/header.php';?>
-    <?php while ($row = $getProduct->fetch(PDO::FETCH_ASSOC)): ?>
+
+    <?php while ($row = $getProducts->fetch(PDO::FETCH_ASSOC)): ?>
         <div class="product-item">
             <img src="images/<?php echo $row['product_image']; ?>" alt="<?php echo $row['product_name']; ?>" />
             <h2><?php echo $row['product_name']; ?></h2>
