@@ -62,3 +62,32 @@ function addProduct($product){
         return $error;
     }
 }
+
+function getAllproducts(){
+    $pdo = Database::getinstance()->getConnection();
+
+    $get_product_query = 'SELECT * FROM tbl_products';
+    $product = $pdo->query($get_product_query);
+
+    if($product){
+        return $product;
+    } else {
+        return false;
+    }
+}
+
+function deleteProduct($id){
+    $pdo = Database::getInstance()->getConnection();
+    $delete_product_query = 'DELETE FROM tbl_products WHERE tbl_products.product_id = :id;';
+    $delete_product_set = $pdo->prepare($delete_product_query);
+            $get_delete_result = $delete_product_set->execute(
+                array(
+                    ':id'=>$id
+                )
+            );
+            if($get_delete_result && $delete_product_set->rowCount() > 0){
+                redirect_to('admin_deleteproduct.php');
+            }else{
+                return false;
+            }
+}
