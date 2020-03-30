@@ -91,3 +91,72 @@ function deleteProduct($id){
                 return false;
             }
 }
+
+function getProductByID($id){
+    $pdo = Database::getInstance()->getConnection();
+    //TODO: execute the proper SQL query to fetch the user data where user_id = $id
+
+    //TODO: if the execution is successful, return the user data
+    //Otherwise, return an error message
+    $show_product_query = 'SELECT * FROM tbl_products WHERE product_id = :id';
+    $show_product_set = $pdo->prepare($show_product_query);
+            $get_product_result = $show_product_set->execute(
+                array(
+                    ':id'=>$id
+                )
+            );
+
+            if($get_product_result){
+                return $show_product_set;
+            }else{
+                return 'not working :(';
+            }
+}
+
+function editProduct($id, $image, $name, $price, $description, $category){
+    //TODO: set up database connection
+    //TODO: Run the proper sql query to update tbl_user with proper values
+    //TODO: if everything goes well, redirect user to index.php
+    //Otherwise, return some error message.
+    $pdo = Database::getInstance()->getConnection();
+    $update_product_query = 'UPDATE tbl_products SET product_image = :image, product_name = :name, product_price = :price, product_description = :description WHERE product_id = :id';
+    $update_product_set = $pdo->prepare($update_product_query);
+            $get_product_result = $update_product_set->execute(
+                array(
+                    ':id'=>$id,
+                    ':image'=>$image,
+                    ':name'=>$name,
+                    ':price'=>$price,
+                    ':description'=>$description
+                )
+            );
+
+            //----------->debug your sql query with:
+            // echo $update_product_set->debugDumpParams();
+            // exit;
+    $last_uploaded_id = $pdo->lastInsertId();
+    if($insert_product_result && !empty($last_uploaded_id)){
+        $update_sport_query = 'INSERT INTO tbl_products_sport(product_id, sport_id) VALUES(:product_id, :sport_id)';
+        $update_sport = $pdo->prepare($update_sport_query);
+
+        $update_sport_result = $update_sport->execute(
+            array(
+                ':product_id'=>$last_uploaded_id,
+                ':sport_id'=>$category,
+            )
+        );
+    }
+
+            if($get_product_result){
+                redirect_to('index.php');
+            }else{
+                return 'not working :(';
+            }
+
+            //could be this other option
+        //     redirect_to('index.php');
+        // } catch (Exception $e){
+        //     //Otherwise, return some error message
+        //     $error = $e->getMessage();
+        //     return $error;
+}
