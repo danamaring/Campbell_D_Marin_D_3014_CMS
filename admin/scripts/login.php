@@ -24,9 +24,6 @@ function login($username, $password){
             )
         );
 
-        // if($user_check['expiring_date']<date('Y-m-d H:i:s')){
-        //     echo "Your account is expired... Please contact the admin.";
-        // }
 
         while($found_user = $user_check->fetch(PDO::FETCH_ASSOC)){            
             $id = $found_user['user_id'];

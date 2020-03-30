@@ -11,7 +11,7 @@ $sport_table = 'tbl_sport';
 $sport = getAll($sport_table);
 
 if(isset($_POST['submit'])){
-    $movie = array(
+    $product = array(
         'image'=>$_FILES['image'],
         'name'=> trim($_POST['name']),
         'price'=> trim($_POST['price']),
@@ -19,7 +19,7 @@ if(isset($_POST['submit'])){
         'sport'=> trim($_POST['genList']),
     );
 
-    $result = addMovie($movie);
+    $result = addProduct($product);
     $message = $result;
 }
 
@@ -33,7 +33,7 @@ if(isset($_POST['submit'])){
 </head>
 <body>
     <?php echo !empty($message) ? $message:''?>
-    <form action="admin_addmovie.php" method="post" enctype="multipart/form-data">
+    <form action="admin_addproduct.php" method="post" enctype="multipart/form-data">
         <label>Product Image:</label><br>
         <input type="file" name="image" value=""><br><br>
     
@@ -46,9 +46,9 @@ if(isset($_POST['submit'])){
         <label>Product Description:</label><br>
         <textarea name="description"></textarea> <br><br>
 
-        <label>Movie Sport:</label><br>
+        <label>Sport:</label><br>
         <select name="genList">
-            <option>Please select a product sport:</option>
+            <option>Please select a category:</option>
             <?php while($row = $sport->fetch(PDO::FETCH_ASSOC)): ?>
             <option value="<?php echo $row['sport_id'] ?>"><?php echo $row['sport_name'];?></option>
             <?php endwhile; ?>
