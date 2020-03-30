@@ -4,34 +4,18 @@ function createUser($fname, $username, $password, $email){
 
     //TODO: finish the below so that it can run a SQL query
     // to create a new user with provided data
-    $create_user_query = 'INSERT INTO tbl_user (user_id, user_fname, user_name, user_pass, user_email, user_date, expiring_date) VALUES (NULL, :fname, :username, :password, :email, NULL, :expiring_date);';
+    $create_user_query = 'INSERT INTO tbl_user (user_id, user_fname, user_name, user_pass, user_email, user_date) VALUES (NULL, :fname, :username, :password, :email, NULL);';
     $create_user_set = $pdo->prepare($create_user_query);
             $create_user_set->execute(
                 array(
                     ':fname'=>$fname,
                     ':username'=>$username,
                     ':password'=>$password,
-                    ':email'=>$email,
-                    ':expiring_date'=>date("Y-m-d H:i:s", strtotime("+1 hours"))
+                    ':email'=>$email
                 )
             );
 
             if($create_user_set){
-                // $sender = 'someone@somedomain.com';
-                // $to      = 'dana.mgasdfgh@gmail.com';
-
-                // $subject = 'this is a subject';
-                // $message = 'hello $username';
-                // $headers = 'From:' . $sender;
-
-                // $sentMail = mail ($to, $subject, $message, $headers);
-         
-                // if( $sentMail == true ) {
-                //     echo "Message sent successfully...";
-                // }else {
-                //     echo "Message could not be sent...";
-                // }
-                
                 redirect_to('index.php');
             }else{
                 return 'The user did not get through';

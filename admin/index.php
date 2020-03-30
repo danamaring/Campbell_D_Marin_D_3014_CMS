@@ -17,7 +17,7 @@
     <a href="admin_edituser.php">Edit User</a>
     <a href="admin_logout.php">Sign Out</a>
     <a href="admin_deleteuser.php">Delete User</a>
-    <a href="admin_addmovie.php">Add Movie</a>
+    <a href="admin_addproduct.php">Add a Product</a>
 
 
 
