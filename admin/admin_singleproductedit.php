@@ -1,9 +1,11 @@
 <?php
     require_once '../load.php';
     confirm_logged_in();
-    // $getProduct = getSingleProduct($tbl, $col, $id); //maybe change this
+    $getProduct = getSingleProduct($tbl, $col, $id); //maybe change this
     $sport_table = 'tbl_sport';
     $sport = getAll($sport_table);
+    $id = $_GET['id'];
+
 
     if (isset($_GET['id'])) {
         $id = $_GET['id'];
@@ -12,15 +14,15 @@
         $getProduct = getSingleProduct($tbl, $col, $id);
     }
 
-    if(isset($_POST['submit'])){
-        // $id = 1;
-        $id = $_GET['id'];
+    if(isset($_GET['submit'])){
+        // $id = $_GET['id'];
 
-        $image = trim($_POST['image']);
-        $name = trim($_POST['name']);
-        $price = trim($_POST['price']);
-        $description = trim($_POST['description']);
-        $category = trim($_POST['genList']);
+        $id = trim($_GET['id']);
+        $image = trim($_GET['image']);
+        $name = trim($_GET['name']);
+        $price = trim($_GET['price']);
+        $description = trim($_GET['description']);
+        $category = trim($_GET['genList']);
         
         if(empty($image) || empty($name) || empty($price) || empty($description) || empty($category)){
             $message = 'Please fill the required fields';
@@ -37,13 +39,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Edit Single Product</title>
+    <link rel="stylesheet" type="text/css" href="../css/main.css">
+
 </head>
 <body>
     <h2>Edit Product</h2>
     <?php echo !empty($message)? $message : '';?>
-    <form action="admin_singleproductedit.php" method="post">
+    <form action="admin_singleproductedit.php" method="get">
 
         <?php while($info = $getProduct->fetch(PDO::FETCH_ASSOC)): ?>
+        <label for="">Product ID:</label>
+        <input type="text" name="id" value="<?php echo $info['product_id'];?>"><br><br>
+
         <label for="">Product image:</label>
         <input type="text" name="image" value="<?php echo $info['product_image'];?>"><br><br>
 
